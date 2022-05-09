@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DDoS Simulator</title>
+    <script src = "static/script.js"></script>
+    <script>
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+
+window.onload = timedRefresh(5000);
+
+ var out = document.getElementById("out");
+
+var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+
+</script>
+    <style>
+    .myDiv {
+        border: 5px outset red;
+        background-color: lightblue;
+        text-align: center;
+
+     }
+         .myDiv1 {
+        border: 5px outset red;
+             float:left;
+             margin-left:30px;
+             margin-top : 50px;
+             height: 400px;
+             width: 250px;
+        background-color: lightblue;
+        text-align: center;
+     }
+        .myDiv2 {
+              border: 5px outset red;
+
+             float:center;
+             margin:auto;
+             height: 300px;
+             width: 500px;
+             opacity:1;
+             background-color: lightblue;
+             text-align: center;
+             margin-top:50px;
+             border-radius: 5px;
+     }
+     .loading {
+  display: flex;
+  justify-content: center;
+}
+
+.loading--full-height {
+  align-items: center;
+  height: 100%;
+}
+
+.loading::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 10px solid #dddddd;
+  border-top-color: #009579;
+  border-radius: 50%;
+  transform: rotate(0.16turn);
+  animation: loading 1s ease infinite;
+}
+
+@keyframes loading {
+  /* Safari support */
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+table {
+    width: 100%;
+    display:block;
+    padding : 0 15px;
+
+}
+thead {
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+}
+tbody {
+    height: 200px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+    </style>
+
+</head>
+<body style="background-color: black">
+      <div class="myDiv">
+          <h1>DDoS Attack Detection using Bi-LSTM Deep Learning Model</h1>
+      </div>
+       <div class="myDiv1">
+          <h1>Recent IP Adresses/ports visiting the system : </h1>
+           <table>
+  <tr>
+    <th>Source IP</th>
+    <th>Source Port</th>
+  </tr>
+  {% for i in dist['ips'] %}
+      {% set item_1 = dist['ips'][loop.index-1] %}
+               {% set item_2 = dist['port'][loop.index-1] %}
+  <tr id = "out">
+    <td>{{item_1}}</td>
+    <td>{{item_2}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+      </div>
+      <div class="myDiv2">
+          <h1>DDoS attack detected from IP : </h1>
+          <div class="loading loading--full-height"></div>
+      </div>
+</body>
+</html>
